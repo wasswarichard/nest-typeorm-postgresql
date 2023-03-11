@@ -6,9 +6,9 @@ import { User } from './entities/user.entity';
 @Injectable()
 export class UsersService {
   private users: User[] = [
-    { id: 1, name: 'richard' },
-    { id: 2, name: 'mike' },
-    { id: 3, name: 'marcus' },
+    { id: 1, name: 'richard', username: 'richard', password: 'testing' },
+    { id: 2, name: 'mike', username: 'mike', password: 'testing' },
+    { id: 3, name: 'marcus', username: 'marcus', password: 'testing' },
   ];
   create(createUserDto: CreateUserDto): User {
     const newUser = { id: Date.now(), ...createUserDto };
@@ -21,7 +21,7 @@ export class UsersService {
     return this.users;
   }
 
-  findOne(id: number): User {
+  async findOne(id: number): Promise<User | undefined> {
     return this.users.find((user) => user.id === id);
   }
 

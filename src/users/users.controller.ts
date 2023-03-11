@@ -8,8 +8,8 @@ import {
   Delete,
   Query,
   NotFoundException,
-  ParseIntPipe
-} from "@nestjs/common";
+  ParseIntPipe,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -41,8 +41,8 @@ export class UsersController {
   @ApiOkResponse({ type: User })
   @ApiNotFoundResponse()
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number): User {
-    const user = this.usersService.findOne(id);
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<User> {
+    const user = await this.usersService.findOne(id);
     if (!user) {
       throw new NotFoundException();
     }

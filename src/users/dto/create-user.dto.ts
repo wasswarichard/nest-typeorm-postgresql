@@ -6,4 +6,6 @@ export class CreateUserDto {
   @IsAlphanumeric()
   @MaxLength(10)
   name: string;
+  username: string;
+  password: string;
 }
