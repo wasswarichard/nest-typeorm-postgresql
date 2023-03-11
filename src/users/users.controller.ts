@@ -22,7 +22,7 @@ import {
   ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
-import { AuthenticatedGuard } from '../auth/authenticated.guard';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @ApiTags('users')
 @Controller('users')
@@ -33,8 +33,7 @@ export class UsersController {
   create(@Body() createUserDto: CreateUserDto): User {
     return this.usersService.create(createUserDto);
   }
-
-  @UseGuards(AuthenticatedGuard)
+  @UseGuards(JwtAuthGuard)
   @ApiOkResponse({ type: User, isArray: true })
   @ApiQuery({ name: 'name', required: false })
   @Get()
