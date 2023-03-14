@@ -8,12 +8,7 @@ describe('UsersController', () => {
   let controller: UsersController;
 
   const mockUsersService = {
-    create: jest.fn((dto) => {
-      return {
-        id: 1,
-        ...dto,
-      };
-    }),
+    create: jest.fn((dto) => Promise.resolve({ id: Date.now(), ...dto })),
     update: jest.fn(),
   };
 
@@ -33,8 +28,15 @@ describe('UsersController', () => {
     expect(controller).toBeDefined();
   });
 
-  it('should create a user', function () {
-    controller.create({
+  it('should create a user', async () => {
+    expect(
+      await controller.create({
+        name: 'richard',
+        username: 'richard',
+        password: 'testing',
+      }),
+    ).toEqual({
+      id: expect.any(Number),
       name: 'richard',
       username: 'richard',
       password: 'testing',
