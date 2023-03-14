@@ -9,11 +9,7 @@ export class UsersService {
   constructor(
     @InjectRepository(User) private usersRepository: Repository<User>,
   ) {}
-  private users: User[] = [
-    { id: 1, name: 'richard', username: 'richard', password: 'testing' },
-    { id: 2, name: 'mike', username: 'mike', password: 'testing' },
-    { id: 3, name: 'marcus', username: 'marcus', password: 'testing' },
-  ];
+
   create(createUserDto: CreateUserDto): Promise<User> {
     return this.usersRepository.save(createUserDto);
   }
