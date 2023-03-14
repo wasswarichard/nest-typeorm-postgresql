@@ -39,7 +39,7 @@ export class UsersController {
   async create(@Body() createUserDto: CreateUserDto): Promise<User> {
     return await this.usersService.create(createUserDto);
   }
-  @UseGuards(JwtAuthGuard)
+
   @ApiOkResponse({ type: User, isArray: true })
   @ApiQuery({ name: 'name', required: false })
   @Get()
