@@ -18,13 +18,13 @@ export class UsersService {
     return this.usersRepository.save(createUserDto);
   }
 
-  findAll(name?: string): User[] {
-    if (name) return this.users.filter((user) => user.name === name);
-    return this.users;
+  async findAll(name?: string): Promise<User[]> {
+    if (name) return await this.usersRepository.find({ where: { name } });
+    return await this.usersRepository.find();
   }
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this.users.find((user) => user.username === username);
+  findOne(username: string): Promise<User | undefined> {
+    return this.usersRepository.findOne({ where: { username } });
   }
 
   async findById(id: number): Promise<User | undefined> {

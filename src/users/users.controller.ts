@@ -43,8 +43,8 @@ export class UsersController {
   @ApiOkResponse({ type: User, isArray: true })
   @ApiQuery({ name: 'name', required: false })
   @Get()
-  findAll(@Query('name') name: string): User[] {
-    return this.usersService.findAll(name);
+  async findAll(@Query('name') name: string): Promise<User[]> {
+    return await this.usersService.findAll(name);
   }
   @ApiOkResponse({ type: User })
   @ApiNotFoundResponse()
