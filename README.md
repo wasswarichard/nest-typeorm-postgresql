@@ -58,6 +58,21 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Nestjs Commands
+
+```bash
+# Install nestjs globally
+$ npm instal -g @nestjs/cli@latest
+
+# start new nestjs project
+$ nest new myproject
+$ nest g module client
+$ nest g controller client
+$ nest g service client
+$ nest g resource client
+```
+
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
