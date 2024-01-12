@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsAlphanumeric, MaxLength } from 'class-validator';
+import { IsAlphanumeric, IsEmail, IsEnum, MaxLength } from 'class-validator';
 
 export class CreateUserDto {
   @ApiProperty()
@@ -8,4 +8,8 @@ export class CreateUserDto {
   name: string;
   username: string;
   password: string;
+  @IsEnum(['active', 'deactivate'], { message: 'use correct status' })
+  status: string;
+  @IsEmail()
+  email: string;
 }

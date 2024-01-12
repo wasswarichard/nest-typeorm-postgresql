@@ -10,8 +10,8 @@ import {
   NotFoundException,
   ParseIntPipe,
   UseGuards,
-  Request,
-} from '@nestjs/common';
+  Request, ValidationPipe
+} from "@nestjs/common";
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -36,7 +36,9 @@ export class UsersController {
   ) {}
   @ApiCreatedResponse({ type: User })
   @Post()
-  async create(@Body() createUserDto: CreateUserDto): Promise<User> {
+  async create(
+    @Body(new ValidationPipe()) createUserDto: CreateUserDto,
+  ): Promise<User> {
     return await this.usersService.create(createUserDto);
   }
 

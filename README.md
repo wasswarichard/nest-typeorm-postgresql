@@ -70,6 +70,7 @@ $ nest g module client
 $ nest g controller client
 $ nest g service client
 $ nest g resource client
+$ nest g guard belt
 ```
 
 
