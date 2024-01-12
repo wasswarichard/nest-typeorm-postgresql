@@ -12,7 +12,17 @@ export class UsersService {
   ) {}
 
   create(createUserDto: CreateUserDto): Promise<User> {
-    return this.usersRepository.save(createUserDto);
+    const newUser = this.usersRepository.create(createUserDto);
+    return this.usersRepository.save(newUser);
+  }
+  async updateUser(id: number): Promise<User> {
+    const user = await this.findById(id);
+    return this.usersRepository.save(user);
+  }
+
+  async deleteUser(id: number): Promise<User> {
+    const user = await this.findById(id);
+    return this.usersRepository.remove(user);
   }
 
   async findAll(name?: string): Promise<User[]> {
@@ -22,6 +32,12 @@ export class UsersService {
 
   findOne(username: string): Promise<User | undefined> {
     return this.usersRepository.findOne({ where: { username } });
+  }
+  customQuery(): any {
+    return this.usersRepository
+      .createQueryBuilder('user')
+      .select('name')
+      .orderBy('id', 'ASC', 'NULLS LAST');
   }
 
   async findById(id: number): Promise<User | undefined> {
