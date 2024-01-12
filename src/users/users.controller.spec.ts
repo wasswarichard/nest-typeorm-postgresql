@@ -34,6 +34,8 @@ describe('UsersController', () => {
         name: 'richard',
         username: 'richard',
         password: 'testing',
+        status: 'activate',
+        email: 'richard@gmail.com',
       }),
     ).toEqual({
       id: expect.any(Number),
