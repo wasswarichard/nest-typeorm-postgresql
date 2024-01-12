@@ -20,7 +20,10 @@ import { PetModule } from './pet/pet.module';
       autoLoadEntities: true,
       synchronize: true,
       entities: ['/../dist/**/*.entity.js'],
-      migrations: ['dist/src/db/migrations/*.js'],
+      // migrations: ['dist/src/db/migrations/*.js'],
+      // cli: {
+      //   migrationsDir: 'src/db/migrations'
+      // },
     }),
     UsersModule,
     AuthModule,
